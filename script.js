@@ -6,14 +6,26 @@ function cssVar(name) {
 const ACCENT = cssVar('--accent-color') || '#7c3aed';
 const ACCENT_LIGHT = cssVar('--accent-light') || '#06b6d4';
 
-// Mobile Menu Toggle
+// Mobile Menu Toggle with Animation
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
+const body = document.body;
 
 if (hamburger) {
     hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        hamburger.style.opacity = navMenu.classList.contains('active') ? '0.8' : '1';
+        const isActive = navMenu.classList.contains('active');
+        
+        if (!isActive) {
+            // Opening menu
+            navMenu.classList.add('active');
+            hamburger.classList.add('active');
+            body.classList.add('menu-open');
+        } else {
+            // Closing menu
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
     });
 
     // Close menu when clicking on a link
@@ -21,8 +33,21 @@ if (hamburger) {
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
-            hamburger.style.opacity = '1';
+            hamburger.classList.remove('active');
+            body.classList.remove('menu-open');
         });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        const isClickInsideNav = navMenu.contains(e.target);
+        const isClickOnHamburger = hamburger.contains(e.target);
+        
+        if (!isClickInsideNav && !isClickOnHamburger && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
     });
 }
 
