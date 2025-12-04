@@ -140,19 +140,11 @@ document.querySelectorAll('.project-card, .setup-card, .skill-category, .stat').
     observer.observe(el);
 });
 
-// Navbar responsive hide on scroll
-let lastScrollTop = 0;
+// Navbar always visible (no hide on scroll)
 const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    if (!navbar) return;
-    if (scrollTop > lastScrollTop && scrollTop > 120) {
-        navbar.style.transform = 'translateY(-100%)';
-    } else {
-        navbar.style.transform = 'translateY(0)';
-    }
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
+if (navbar) {
+    navbar.style.transform = 'translateY(0)';
+}
 
 // Keyboard accessibility
 document.addEventListener('keydown', (e) => {
