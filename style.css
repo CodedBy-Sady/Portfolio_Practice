@@ -543,6 +543,11 @@ section {
     display: inline-block;
 }
 
+.semester-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.2), transparent);
+    margin: 30px 0;
+}
 /* ======================================
    PROJECTS SECTION
    ====================================== */
