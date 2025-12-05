@@ -471,6 +471,79 @@ section {
 }
 
 /* ======================================
+   COURSES SECTION
+   ====================================== */
+
+.courses-table-wrapper {
+    background: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(124, 58, 237, 0.05);
+    transition: var(--transition);
+}
+
+.courses-table-wrapper:hover {
+    border-color: rgba(124, 58, 237, 0.12);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.08);
+}
+
+.courses-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.courses-table thead {
+    background: linear-gradient(90deg, rgba(124, 58, 237, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+}
+
+.courses-table th {
+    color: var(--accent-color);
+    font-weight: 700;
+    padding: 14px;
+    text-align: left;
+    border-bottom: 2px solid rgba(124, 58, 237, 0.1);
+}
+
+.courses-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.courses-table tbody tr {
+    transition: var(--transition);
+}
+
+.courses-table tbody tr:hover {
+    background: rgba(124, 58, 237, 0.04);
+}
+
+.courses-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.course-code {
+    background: rgba(124, 58, 237, 0.12);
+    color: var(--accent-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.credit-badge {
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 12px;
+    display: inline-block;
+}
+
+/* ======================================
    PROJECTS SECTION
    ====================================== */
 
@@ -797,6 +870,15 @@ section {
 
     .setup-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .courses-table {
+        font-size: 12px;
+    }
+
+    .courses-table th,
+    .courses-table td {
+        padding: 10px 8px;
     }
 
     section {
