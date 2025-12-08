@@ -6,14 +6,31 @@ function cssVar(name) {
 const ACCENT = cssVar('--accent-color') || '#7c3aed';
 const ACCENT_LIGHT = cssVar('--accent-light') || '#06b6d4';
 
-// Dark Mode Toggle (non-working - placeholder)
+// Dark Mode Toggle (Fully Functional)
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.querySelector('.theme-icon');
+const htmlElement = document.documentElement;
+
+// Check for saved theme preference or default to light mode
+const currentTheme = localStorage.getItem('theme') || 'light';
+if (currentTheme === 'dark') {
+    htmlElement.classList.add('dark-mode');
+    themeIcon.textContent = '☀️';
+}
 
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-        // Placeholder for dark mode functionality
-        // Animation on click
+        // Toggle dark mode
+        htmlElement.classList.toggle('dark-mode');
+        
+        // Save preference
+        const isDarkMode = htmlElement.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        
+        // Update icon
+        themeIcon.textContent = isDarkMode ? '☀️' : '🌙';
+        
+        // Animation
         themeIcon.style.transform = 'rotate(360deg) scale(1.2)';
         setTimeout(() => {
             themeIcon.style.transform = 'rotate(0deg) scale(1)';
