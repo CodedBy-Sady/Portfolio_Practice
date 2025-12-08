@@ -130,6 +130,36 @@ body.menu-open {
     width: 100%;
 }
 
+.theme-toggle {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: var(--transition);
+    margin-right: 12px;
+}
+
+.theme-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: rgba(124, 58, 237, 0.1);
+    transform: scale(1.1);
+}
+
+.theme-toggle:active .theme-icon {
+    transform: rotate(20deg);
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
