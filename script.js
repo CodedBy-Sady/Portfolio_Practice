@@ -6,6 +6,21 @@ function cssVar(name) {
 const ACCENT = cssVar('--accent-color') || '#7c3aed';
 const ACCENT_LIGHT = cssVar('--accent-light') || '#06b6d4';
 
+// Dark Mode Toggle (non-working - placeholder)
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.querySelector('.theme-icon');
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        // Placeholder for dark mode functionality
+        // Animation on click
+        themeIcon.style.transform = 'rotate(360deg) scale(1.2)';
+        setTimeout(() => {
+            themeIcon.style.transform = 'rotate(0deg) scale(1)';
+        }, 300);
+    });
+}
+
 // Mobile Menu Toggle with Animation
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
