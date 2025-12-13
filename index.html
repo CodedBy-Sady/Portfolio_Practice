@@ -19,6 +19,7 @@
                 <li><a href="#cgpa" class="nav-link">CGPA</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#setup" class="nav-link">Setup</a></li>
+                <li><a href="#reviews" class="nav-link">Reviews</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -483,6 +484,52 @@
                     <h3>IDE</h3>
                     <p>Visual Studio Code</p>
                     <span class="spec">Primary development tool</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews & Advice Section -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title">Reviews & Advice</h2>
+            <p class="section-subtitle">Share your thoughts, feedback, or advice with me</p>
+            
+            <div class="reviews-container">
+                <!-- Reviews Display -->
+                <div class="reviews-display" id="reviewsDisplay">
+                    <div class="no-reviews" id="noReviews">
+                        <p>📝 Be the first to share your review or advice!</p>
+                    </div>
+                </div>
+
+                <!-- Review Form -->
+                <div class="review-form-wrapper">
+                    <h3>Submit Your Review or Advice</h3>
+                    <form class="review-form" id="reviewForm">
+                        <div class="form-group">
+                            <input type="text" id="reviewName" placeholder="Your Name" required maxlength="50">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="reviewEmail" placeholder="Your Email (won't be shared)" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="reviewText" placeholder="Share your advice, feedback, or review..." required maxlength="500" rows="5"></textarea>
+                            <span class="char-count"><span id="charCount">0</span>/500</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewRating">Rating:</label>
+                            <div class="rating-stars">
+                                <span class="star" data-rating="1">★</span>
+                                <span class="star" data-rating="2">★</span>
+                                <span class="star" data-rating="3">★</span>
+                                <span class="star" data-rating="4">★</span>
+                                <span class="star" data-rating="5">★</span>
+                            </div>
+                            <input type="hidden" id="reviewRating" value="0">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </form>
                 </div>
             </div>
         </div>
