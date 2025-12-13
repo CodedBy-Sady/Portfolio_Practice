@@ -950,6 +950,201 @@ section {
 }
 
 /* ======================================
+   REVIEWS & ADVICE SECTION
+   ====================================== */
+
+.reviews {
+    padding: 80px 0;
+    background-color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 18px;
+    margin-bottom: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.reviews-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.reviews-display {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.reviews-display::-webkit-scrollbar {
+    width: 6px;
+}
+
+.reviews-display::-webkit-scrollbar-track {
+    background: var(--muted);
+    border-radius: 3px;
+}
+
+.reviews-display::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 3px;
+    opacity: 0.5;
+}
+
+.no-reviews {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 40px 20px;
+    background: var(--secondary-color);
+    border-radius: 12px;
+    font-size: 16px;
+    border: 1px dashed var(--border-color);
+}
+
+.review-card {
+    background: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    animation: slideInReview 0.3s ease-out;
+    transition: var(--transition);
+}
+
+.review-card:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.1);
+}
+
+@keyframes slideInReview {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 12px;
+}
+
+.review-name {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 16px;
+}
+
+.review-rating {
+    color: #fbbf24;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.review-text {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.review-date {
+    color: var(--text-secondary);
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.review-form-wrapper {
+    background: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.review-form-wrapper h3 {
+    margin-bottom: 25px;
+    color: var(--text-primary);
+    font-size: 20px;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+    background: var(--primary-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 12px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.char-count {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-align: right;
+    opacity: 0.7;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 8px;
+    font-size: 28px;
+}
+
+.star {
+    cursor: pointer;
+    color: var(--border-color);
+    transition: var(--transition);
+    user-select: none;
+}
+
+.star:hover,
+.star.active {
+    color: #fbbf24;
+    transform: scale(1.15);
+}
+
+/* ======================================
    CONTACT SECTION
    ====================================== */
 
@@ -1102,13 +1297,26 @@ section {
     }
 
     .about-content,
-    .contact-content {
+    .contact-content,
+    .reviews-container {
         grid-template-columns: 1fr;
         gap: 40px;
     }
 
     .about-stats {
         grid-template-columns: 1fr;
+    }
+    
+    .reviews-display {
+        max-height: 400px;
+    }
+    
+    .review-form-wrapper {
+        padding: 20px;
+    }
+    
+    .rating-stars {
+        font-size: 24px;
     }
 
     .projects-grid {
