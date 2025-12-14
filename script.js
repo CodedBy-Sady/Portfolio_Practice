@@ -342,23 +342,8 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ========== SCROLL ANIMATIONS ==========
-// Intersection Observer for scroll reveal animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// Add animation classes to elements
+// ========== ENHANCED SCROLL ANIMATIONS ==========
+// Add animation classes to elements on page load
 document.addEventListener('DOMContentLoaded', () => {
     // Animate section titles
     document.querySelectorAll('.section-title').forEach((el, i) => {
