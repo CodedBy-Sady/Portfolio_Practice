@@ -85,10 +85,122 @@ html.dark-mode body.menu-open {
     filter: brightness(1.1);
 }
 
+/* Animated Background Gradient */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Floating Animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes floatSlow {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+}
+
+/* Glow Effect */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(124, 58, 237, 0.3), 0 0 40px rgba(6, 182, 212, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(124, 58, 237, 0.5), 0 0 60px rgba(6, 182, 212, 0.2);
+    }
+}
+
+/* Scroll Reveal Animation */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* Scroll Animation Classes */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.fade-in-up.visible {
+    animation: slideInUp 0.8s ease forwards;
+}
+
+.fade-in-left {
+    opacity: 0;
+    transform: translateX(-40px);
+}
+
+.fade-in-left.visible {
+    animation: slideInLeft 0.8s ease forwards;
+}
+
+.fade-in-right {
+    opacity: 0;
+    transform: translateX(40px);
+}
+
+.fade-in-right.visible {
+    animation: slideInRight 0.8s ease forwards;
+}
+
+.float-animation {
+    animation: float 3s ease-in-out infinite;
+}
+
+.float-slow-animation {
+    animation: floatSlow 4s ease-in-out infinite;
 }
 
 /* ======================================
@@ -335,7 +447,7 @@ body.menu-open .hero {
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 14px 40px rgba(124, 58, 237, 0.12);
+    box-shadow: 0 0 25px rgba(124, 58, 237, 0.5), 0 14px 40px rgba(124, 58, 237, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .btn-secondary {
@@ -347,6 +459,7 @@ body.menu-open .hero {
 .btn-secondary:hover {
     background: rgba(124, 58, 237, 0.06);
     color: var(--text-primary);
+    box-shadow: 0 0 25px rgba(124, 58, 237, 0.3), 0 14px 40px rgba(6, 182, 212, 0.1);
 }
 
 .scroll-indicator {
@@ -470,6 +583,8 @@ section {
     border: 1px solid var(--border-color);
     text-align: center;
     transition: var(--transition);
+    animation: slideInUp 0.8s ease forwards;
+    animation-delay: calc(var(--index, 0) * 0.15s);
 }
 
 .stat-number {
@@ -486,8 +601,9 @@ section {
 
 .stat:hover {
     background: rgba(124, 58, 237, 0.06);
-    border-color: rgba(124, 58, 237, 0.12);
-    transform: translateY(-6px);
+    border-color: var(--accent-color);
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px rgba(124, 58, 237, 0.25), 0 8px 16px rgba(6, 182, 212, 0.08);
 }
 
 /* ======================================
@@ -798,6 +914,7 @@ section {
     transition: var(--transition);
     position: relative;
     overflow: hidden;
+    animation: float 3s ease-in-out infinite;
 }
 
 .project-card::before {
@@ -812,9 +929,9 @@ section {
 }
 
 .project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 18px 36px rgba(15, 23, 36, 0.04);
-    border-color: rgba(124, 58, 237, 0.12);
+    transform: translateY(-10px);
+    box-shadow: 0 0 40px rgba(124, 58, 237, 0.4), 0 18px 36px rgba(6, 182, 212, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-color: var(--accent-color);
 }
 
 .project-header {
@@ -917,6 +1034,7 @@ section {
     border-radius: 10px;
     text-align: center;
     transition: var(--transition);
+    animation: float 3.5s ease-in-out infinite;
 }
 
 .setup-icon {
@@ -944,9 +1062,10 @@ section {
 }
 
 .setup-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(124, 58, 237, 0.12);
+    transform: translateY(-8px);
+    border-color: var(--accent-color);
     background: rgba(6, 182, 212, 0.04);
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.3), 0 15px 40px rgba(6, 182, 212, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 /* ======================================
