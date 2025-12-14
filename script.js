@@ -342,4 +342,72 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-console.log('Updated portfolio script loaded');
+// ========== SCROLL ANIMATIONS ==========
+// Intersection Observer for scroll reveal animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Add animation classes to elements
+document.addEventListener('DOMContentLoaded', () => {
+    // Animate section titles
+    document.querySelectorAll('.section-title').forEach((el, i) => {
+        el.classList.add('fade-in-up');
+        observer.observe(el);
+    });
+
+    // Animate project cards
+    document.querySelectorAll('.project-card').forEach((el, i) => {
+        el.classList.add('fade-in-up');
+        el.style.animationDelay = `${i * 0.1}s`;
+        observer.observe(el);
+    });
+
+    // Animate skill cards
+    document.querySelectorAll('.skill-category').forEach((el, i) => {
+        el.classList.add('fade-in-up');
+        el.style.animationDelay = `${i * 0.15}s`;
+        observer.observe(el);
+    });
+
+    // Animate CGPA cards with staggered animation
+    document.querySelectorAll('.cgpa-card').forEach((el, i) => {
+        el.classList.add('fade-in-up');
+        el.style.animationDelay = `${i * 0.1}s`;
+        observer.observe(el);
+    });
+
+    // Animate setup cards
+    document.querySelectorAll('.setup-card').forEach((el, i) => {
+        el.classList.add('fade-in-up');
+        el.style.animationDelay = `${i * 0.08}s`;
+        observer.observe(el);
+    });
+
+    // Animate review items
+    document.querySelectorAll('.review-item').forEach((el, i) => {
+        el.classList.add('fade-in-up');
+        observer.observe(el);
+    });
+
+    // Add index to stats and skill tags for animation stagger
+    document.querySelectorAll('.stat').forEach((el, i) => {
+        el.style.setProperty('--index', i);
+    });
+
+    document.querySelectorAll('.skill-tag').forEach((el, i) => {
+        el.style.setProperty('--index', i);
+    });
+});
+
+console.log('Updated portfolio script with scroll animations loaded');
