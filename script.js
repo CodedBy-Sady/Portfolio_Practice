@@ -29,12 +29,6 @@ if (themeToggle) {
         
         // Update icon
         themeIcon.textContent = isDarkMode ? '☀️' : '🌙';
-        
-        // Animation
-        themeIcon.style.transform = 'rotate(360deg) scale(1.2)';
-        setTimeout(() => {
-            themeIcon.style.transform = 'rotate(0deg) scale(1)';
-        }, 300);
     });
 }
 
@@ -157,20 +151,23 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Intersection Observer for subtle fade-ins
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-            observer.unobserve(entry.target);
-        }
+// Performance: Lazy load images
+if ('IntersectionObserver' in window) {
+    const images = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                imageObserver.unobserve(img);
+            }
+        });
     });
-}, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+    images.forEach(img => imageObserver.observe(img));
+}
 
-document.querySelectorAll('.project-card, .setup-card, .skill-category, .stat').forEach(el => {
-    el.style.opacity = '0';
-    observer.observe(el);
-});
+// No scroll animations needed - website loads instantly
 
 // Navbar always visible (no hide on scroll)
 const navbar = document.querySelector('.navbar');
@@ -315,14 +312,12 @@ if (reviewForm) {
             padding: 15px 25px;
             border-radius: 8px;
             z-index: 1000;
-            animation: slideInReview 0.3s ease-out;
         `;
         successMsg.textContent = '✅ Thank you for your review!';
         document.body.appendChild(successMsg);
 
         setTimeout(() => {
-            successMsg.style.animation = 'slideOutReview 0.3s ease-in forwards';
-            setTimeout(() => successMsg.remove(), 300);
+            successMsg.remove();
         }, 3000);
     });
 }
@@ -330,69 +325,7 @@ if (reviewForm) {
 // Initial render
 renderReviews();
 
-// Add slideout animation
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideOutReview {
-        to {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// ========== ENHANCED SCROLL ANIMATIONS ==========
-// Add animation classes to elements on page load
+// DOM content fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Animate section titles
-    document.querySelectorAll('.section-title').forEach((el, i) => {
-        el.classList.add('fade-in-up');
-        observer.observe(el);
-    });
-
-    // Animate project cards
-    document.querySelectorAll('.project-card').forEach((el, i) => {
-        el.classList.add('fade-in-up');
-        el.style.animationDelay = `${i * 0.1}s`;
-        observer.observe(el);
-    });
-
-    // Animate skill cards
-    document.querySelectorAll('.skill-category').forEach((el, i) => {
-        el.classList.add('fade-in-up');
-        el.style.animationDelay = `${i * 0.15}s`;
-        observer.observe(el);
-    });
-
-    // Animate CGPA cards with staggered animation
-    document.querySelectorAll('.cgpa-card').forEach((el, i) => {
-        el.classList.add('fade-in-up');
-        el.style.animationDelay = `${i * 0.1}s`;
-        observer.observe(el);
-    });
-
-    // Animate setup cards
-    document.querySelectorAll('.setup-card').forEach((el, i) => {
-        el.classList.add('fade-in-up');
-        el.style.animationDelay = `${i * 0.08}s`;
-        observer.observe(el);
-    });
-
-    // Animate review items
-    document.querySelectorAll('.review-item').forEach((el, i) => {
-        el.classList.add('fade-in-up');
-        observer.observe(el);
-    });
-
-    // Add index to stats and skill tags for animation stagger
-    document.querySelectorAll('.stat').forEach((el, i) => {
-        el.style.setProperty('--index', i);
-    });
-
-    document.querySelectorAll('.skill-tag').forEach((el, i) => {
-        el.style.setProperty('--index', i);
-    });
+    console.log('Portfolio loaded successfully - no animations');
 });
-
-console.log('Updated portfolio script with scroll animations loaded');
