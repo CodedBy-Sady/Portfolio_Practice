@@ -11,24 +11,28 @@ const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.querySelector('.theme-icon');
 const htmlElement = document.documentElement;
 
-// Check for saved theme preference or default to light mode
-const currentTheme = localStorage.getItem('theme') || 'light';
-if (currentTheme === 'dark') {
-    htmlElement.classList.add('dark-mode');
-    themeIcon.textContent = '☀️';
+// Apply saved theme preference on page load
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    if (savedTheme === 'dark') {
+        htmlElement.classList.add('dark-mode');
+        if (themeIcon) themeIcon.textContent = '☀️';
+    } else {
+        htmlElement.classList.remove('dark-mode');
+        if (themeIcon) themeIcon.textContent = '🌙';
+    }
 }
 
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
         // Toggle dark mode
-        htmlElement.classList.toggle('dark-mode');
+        const isDarkMode = htmlElement.classList.toggle('dark-mode');
         
         // Save preference
-        const isDarkMode = htmlElement.classList.contains('dark-mode');
         localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
         
         // Update icon
-        themeIcon.textContent = isDarkMode ? '☀️' : '🌙';
+        if (themeIcon) themeIcon.textContent = isDarkMode ? '☀️' : '🌙';
     });
 }
 
