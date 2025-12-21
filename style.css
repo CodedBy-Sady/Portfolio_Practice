@@ -1209,12 +1209,12 @@ section {
 .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 35px;
 }
 
 .contact-item {
     display: flex;
-    gap: 12px;
+    gap: 15px;
     align-items: flex-start;
 }
 
